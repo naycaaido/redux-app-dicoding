@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { apiGetAllUsers } from '../api';
 
 export const fetchUsers = createAsyncThunk(
-  "users/fetchUsers",
+  'users/fetchUsers',
   async (_, { rejectWithValue }) => {
     try {
       const res = await apiGetAllUsers();

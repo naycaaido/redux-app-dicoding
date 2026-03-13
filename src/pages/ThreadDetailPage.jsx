@@ -87,7 +87,6 @@ const ThreadDetailPage = () => {
 
             <div
               className='thread-detail__body'
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: detail.body }}
             />
 
