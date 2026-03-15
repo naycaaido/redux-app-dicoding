@@ -7,6 +7,7 @@ import ThreadCard from '../components/ThreadCard';
 import authReducer from '../store/authSlice';
 import threadsReducer from '../store/threadsSlice';
 
+// Pengujian untuk komponen ThreadCard
 describe('ThreadCard', () => {
   const mockThread = {
     id: 'thread-1',
@@ -42,8 +43,10 @@ describe('ThreadCard', () => {
     });
 
   it('should render thread card correctly', () => {
+    // Arrange (Persiapan data atau render komponen)
     const store = makeStore({ id: 'user-1', name: 'John Doe' });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -52,6 +55,7 @@ describe('ThreadCard', () => {
       </Provider>
     );
 
+    // Assert (Verifikasi hasil yang diharapkan)
     // Verify Title
     expect(screen.getByText('Testing React Components')).toBeVisible();
     // Verify Category (has # prefix)

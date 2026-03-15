@@ -1,9 +1,17 @@
+// Pengujian untuk halaman Login E2E
 describe('Login Spec', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173/login');
   });
 
   it('should display login page correctly', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // cy.visit() sudah dipanggil di beforeEach
+
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
+    // Tidak ada aksi user spesifik, langsung asersi tampilan
+
+    // Assert (Verifikasi hasil yang diharapkan)
     cy.get('input[placeholder="email@contoh.com"]').should('be.visible');
     cy.get('input[placeholder="Masukkan password"]').should('be.visible');
     cy.get('button')
@@ -12,10 +20,12 @@ describe('Login Spec', () => {
   });
 
   it('should login successfully with valid credentials', () => {
+    // Arrange (Persiapan data atau render komponen)
     cy.intercept('POST', '**/login').as('loginRequest');
     cy.intercept('GET', '**/users/me').as('getUserProfile');
     cy.intercept('GET', '**/threads').as('getThreads');
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     cy.get('input[placeholder="email@contoh.com"]').type(
       'aidonayaka4@gmail.com',
     );
@@ -24,6 +34,7 @@ describe('Login Spec', () => {
       .contains(/^Masuk$/)
       .click();
 
+    // Assert (Verifikasi hasil yang diharapkan)
     cy.wait('@loginRequest')
       .its('response.statusCode')
       .should('be.oneOf', [200, 201]);
@@ -37,6 +48,10 @@ describe('Login Spec', () => {
   });
 
   it('should show error message with invalid credentials', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // cy.visit() sudah dipanggil di beforeEach
+
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     cy.get('input[placeholder="email@contoh.com"]').type(
       'wrong1232@example.com',
     );
@@ -47,27 +62,38 @@ describe('Login Spec', () => {
       .contains(/^Masuk$/)
       .click();
 
+    // Assert (Verifikasi hasil yang diharapkan)
     // Sesuaikan dengan selector pesan error di aplikasi Anda
     cy.get('.alert--error').should('be.visible');
   });
 
   it('should prevent login with empty fields', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // cy.visit() sudah dipanggil di beforeEach
+
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     cy.get('button')
       .contains(/^Masuk$/)
       .click();
 
+    // Assert (Verifikasi hasil yang diharapkan)
     // Memastikan tetap di halaman login atau muncul alert validasi HTML5/UI
     cy.url().should('include', '/login');
     cy.get('input:invalid').should('have.length.at.least', 1);
   });
 
   it('should show error for invalid email format', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // cy.visit() sudah dipanggil di beforeEach
+
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     cy.get('input[placeholder="email@contoh.com"]').type('email-tidak-valid');
     cy.get('input[placeholder="Masukkan password"]').type('password123');
     cy.get('button')
       .contains(/^Masuk$/)
       .click();
 
+    // Assert (Verifikasi hasil yang diharapkan)
     cy.get('input:invalid').should('have.length', 1);
   });
 });

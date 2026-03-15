@@ -15,12 +15,14 @@ const makeStore = (preloadedState) =>
     preloadedState,
   });
 
+// Pengujian untuk fungsi leaderboard thunks
 describe('leaderboard thunks', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should dispatch fetchLeaderboard successfully', async () => {
+    // Arrange (Persiapan data atau render komponen)
     const mockLeaderboards = [
       { user: { id: 'user-1', name: 'John Doe', email: 'john@example.com', avatar: 'https://example.com/avatar.png' }, score: 100 },
       { user: { id: 'user-2', name: 'Jane Doe', email: 'jane@example.com', avatar: 'https://example.com/avatar2.png' }, score: 50 },
@@ -38,8 +40,10 @@ describe('leaderboard thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(fetchLeaderboard());
 
+    // Assert (Verifikasi hasil yang diharapkan)
     const state = store.getState().leaderboard;
     expect(apiGetLeaderboards).toHaveBeenCalled();
     expect(state.leaderboards).toEqual(mockLeaderboards);
@@ -48,6 +52,7 @@ describe('leaderboard thunks', () => {
   });
 
   it('should handle fetchLeaderboard failure', async () => {
+    // Arrange (Persiapan data atau render komponen)
     apiGetLeaderboards.mockRejectedValue({
       response: { data: { message: 'Failed to fetch' } },
     });
@@ -60,8 +65,10 @@ describe('leaderboard thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(fetchLeaderboard());
 
+    // Assert (Verifikasi hasil yang diharapkan)
     const state = store.getState().leaderboard;
     expect(state.leaderboards).toEqual([]);
     expect(state.loading).toBe(false);
