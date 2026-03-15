@@ -27,14 +27,24 @@ const baseState = {
   error: null,
 };
 
+// Pengujian untuk fungsi threadsReducer
 describe('threadsReducer', () => {
   it('should set filtered category', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // baseState sudah dideklarasikan di luar blok test
+
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     const result = threadsReducer(baseState, setFilteredCategory('react'));
 
+    // Assert (Verifikasi hasil yang diharapkan)
     expect(result.filteredCategory).toBe('react');
   });
 
   it('should apply optimistic vote updates', () => {
+    // Arrange (Persiapan data atau render komponen)
+    // baseState sudah dideklarasikan di luar blok test
+    
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     const result = threadsReducer(
       baseState,
       optimisticVoteThread({
@@ -44,6 +54,7 @@ describe('threadsReducer', () => {
       }),
     );
 
+    // Assert (Verifikasi hasil yang diharapkan)
     expect(result.threads[0].upVotesBy).toEqual(['user-1']);
     expect(result.threads[0].downVotesBy).toEqual(['user-2']);
   });

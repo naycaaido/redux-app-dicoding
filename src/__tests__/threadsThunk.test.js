@@ -34,12 +34,14 @@ const makeStore = (preloadedState) =>
     preloadedState,
   });
 
+// Pengujian untuk fungsi threads thunks
 describe('threads thunks', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should store threads from fetchThreads', async () => {
+    // Arrange (Persiapan data atau render komponen)
     apiGetAllThreads.mockResolvedValue({
       data: {
         data: {
@@ -74,13 +76,16 @@ describe('threads thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(fetchThreads());
 
+    // Assert (Verifikasi hasil yang diharapkan)
     expect(store.getState().threads.threads).toHaveLength(1);
     expect(store.getState().threads.threads[0].id).toBe('thread-1');
   });
 
   it('should upvote thread using voteThread', async () => {
+    // Arrange (Persiapan data atau render komponen)
     apiUpVoteThread.mockResolvedValue({});
 
     const store = makeStore({
@@ -113,8 +118,10 @@ describe('threads thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(voteThread('thread-1', 1));
 
+    // Assert (Verifikasi hasil yang diharapkan)
     expect(apiUpVoteThread).toHaveBeenCalledWith('thread-1');
     expect(store.getState().threads.threads[0].upVotesBy).toEqual(['user-1']);
   });

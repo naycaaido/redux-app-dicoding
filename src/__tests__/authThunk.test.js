@@ -17,12 +17,14 @@ const makeStore = (preloadedState) =>
     preloadedState,
   });
 
+// Pengujian untuk fungsi auth thunks
 describe('auth thunks', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should dispatch loginUser successfully', async () => {
+    // Arrange (Persiapan data atau render komponen)
     const mockToken = 'fake-token';
     const mockUser = { id: 'user-1', name: 'John Doe', email: 'john@example.com' };
 
@@ -43,8 +45,10 @@ describe('auth thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(loginUser({ email: 'john@example.com', password: 'password123' }));
 
+    // Assert (Verifikasi hasil yang diharapkan)
     const state = store.getState().auth;
     expect(apiLogin).toHaveBeenCalledWith({ email: 'john@example.com', password: 'password123' });
     expect(apiGetOwnProfile).toHaveBeenCalled();
@@ -54,6 +58,7 @@ describe('auth thunks', () => {
   });
 
   it('should handle loginUser failure', async () => {
+    // Arrange (Persiapan data atau render komponen)
     apiLogin.mockRejectedValue({
       response: { data: { message: 'Invalid credentials' } },
     });
@@ -68,8 +73,10 @@ describe('auth thunks', () => {
       },
     });
 
+    // Act (Aksi yang dilakukan, seperti interaksi user atau dispatch thunk)
     await store.dispatch(loginUser({ email: 'wrong@example.com', password: 'wrongpassword' }));
 
+    // Assert (Verifikasi hasil yang diharapkan)
     const state = store.getState().auth;
     expect(state.token).toBeNull();
     expect(state.authedUser).toBeNull();
