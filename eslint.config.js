@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook';
 
 import daStyle from 'eslint-config-dicodingacademy';
 
@@ -16,4 +16,4 @@ export default [{
   },
 }, {
   ignores: ['node_modules', 'dist', 'build', 'vite.config.js'],
-}, daStyle, ...storybook.configs["flat/recommended"]];
+}, daStyle, ...storybook.configs['flat/recommended']];

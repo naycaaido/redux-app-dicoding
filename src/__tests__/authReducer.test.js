@@ -13,10 +13,10 @@ describe('authReducer', () => {
       error: null,
       initialized: true,
     };
-    
+
     const result = authReducer(initialState, logoutUser());
 
-    expect(result.authedUser).toBe(null);
+    expect(result.authedUser).toBe(true);
     expect(result.token).toBe(null);
   });
 
@@ -28,7 +28,7 @@ describe('authReducer', () => {
       error: 'Login failed',
       initialized: true,
     };
-    
+
     const result = authReducer(initialState, clearAuthError());
 
     expect(result.error).toBe(null);
