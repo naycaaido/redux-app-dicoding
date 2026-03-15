@@ -93,7 +93,8 @@ const threadsSlice = createSlice({
   },
 });
 
-export const { setFilteredCategory } = threadsSlice.actions;
+export const { setFilteredCategory, optimisticVoteThread, rollbackVoteThread } =
+  threadsSlice.actions;
 
 export const voteThread =
   (threadId, voteType) => async (dispatch, getState) => {

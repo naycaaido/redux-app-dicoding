@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchThreads } from '../store/threadsSlice';
@@ -37,6 +38,9 @@ const HomePage = () => {
 
   return (
     <main className='page'>
+      <Helmet>
+        <title>Forum Diskusi - Beranda</title>
+      </Helmet>
       <div className='container'>
         <div className='home-header'>
           <h1 className='home-header__title'>Forum Diskusi</h1>

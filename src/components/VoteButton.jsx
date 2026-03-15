@@ -1,12 +1,13 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const VoteButton = ({
   upVotesBy,
   downVotesBy,
-  userId,
+  userId = null, // Mengganti defaultProps dengan default parameter
   onUpVote,
   onDownVote,
-  size,
+  size = 'md', // Mengganti defaultProps dengan default parameter
 }) => {
   const isUpVoted = userId && upVotesBy.includes(userId);
   const isDownVoted = userId && downVotesBy.includes(userId);
@@ -16,7 +17,7 @@ const VoteButton = ({
       <button
         type='button'
         className={`vote-btn vote-btn--up ${isUpVoted ? 'vote-btn--active-up' : ''}`}
-        onClick={onUpVote}
+        onClick={(e) => userId && onUpVote(e)} // Hanya panggil onUpVote jika ada userId
         title='Upvote'
         aria-label='Upvote'
       >
@@ -26,7 +27,7 @@ const VoteButton = ({
       <button
         type='button'
         className={`vote-btn vote-btn--down ${isDownVoted ? 'vote-btn--active-down' : ''}`}
-        onClick={onDownVote}
+        onClick={(e) => userId && onDownVote(e)} // Hanya panggil onDownVote jika ada userId
         title='Downvote'
         aria-label='Downvote'
       >
@@ -44,11 +45,6 @@ VoteButton.propTypes = {
   onUpVote: PropTypes.func.isRequired,
   onDownVote: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['sm', 'md']),
-};
-
-VoteButton.defaultProps = {
-  userId: null,
-  size: 'md',
 };
 
 export default VoteButton;

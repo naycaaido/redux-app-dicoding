@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, clearAuthError } from '../store/authSlice';
@@ -26,6 +27,9 @@ const RegisterPage = () => {
 
   return (
     <main className='page page--auth'>
+      <Helmet>
+        <title>Forum Diskusi - Daftar</title>
+      </Helmet>
       <div className='auth-card'>
         <h1 className='auth-card__title'>Daftar</h1>
         <p className='auth-card__subtitle'>
