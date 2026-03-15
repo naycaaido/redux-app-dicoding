@@ -1,8 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import authReducer, {
-  logoutUser,
-  clearAuthError,
-} from '../store/authSlice';
+import authReducer, { logoutUser, clearAuthError } from '../store/authSlice';
 
 describe('authReducer', () => {
   it('should handle logoutUser', () => {
@@ -13,7 +10,7 @@ describe('authReducer', () => {
       error: null,
       initialized: true,
     };
-    
+
     const result = authReducer(initialState, logoutUser());
 
     expect(result.authedUser).toBe(null);
@@ -28,7 +25,7 @@ describe('authReducer', () => {
       error: 'Login failed',
       initialized: true,
     };
-    
+
     const result = authReducer(initialState, clearAuthError());
 
     expect(result.error).toBe(null);
