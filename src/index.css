@@ -114,7 +114,6 @@ img {
 
 .btn--outline {
   border: 1.5px solid var(--border);
-  var(--bg);
 }
 
 .btn--outline:hover {
