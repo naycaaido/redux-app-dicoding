@@ -29,20 +29,20 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/threads/:threadId" element={<ThreadDetailPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/leaderboard" element={<LeaderboardPage />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/threads/:threadId' element={<ThreadDetailPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/leaderboard' element={<LeaderboardPage />} />
         <Route
-          path="/new-thread"
+          path='/new-thread'
           element={
             <ProtectedRoute>
               <CreateThreadPage />
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </>
   );
